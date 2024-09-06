@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Sidebar from "./Sidebar";
 export default function ProtectedLayout() {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -8,8 +9,15 @@ export default function ProtectedLayout() {
   useEffect(() => {
     if (isLoggedIn === false) {
       navigate("/login");
+    } else if (isLoggedIn === true && window.location.pathname === "/login") {
+      navigate("/orders");
     }
   }, [isLoggedIn, navigate]);
 
-  return <Outlet />;
+  return (
+    <>
+      {isLoggedIn && <Sidebar />}
+      <Outlet />
+    </>
+  );
 }
