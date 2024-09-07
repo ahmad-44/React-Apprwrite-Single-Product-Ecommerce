@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { _navbar, _footer } from "./constants/sectionController";
+import { Navbar, Topbar, Footer } from "./components/index.js";
+import { _navbar, _footer, _topbar } from "./constants/sectionController";
+
 function Layout() {
   return (
     <>
+      {_topbar && <Topbar />}
       {_navbar && <Navbar />}
       <Outlet />
-      {_footer && <Footer />}
+      {/* {_footer && <Footer />} */}
     </>
   );
 }
