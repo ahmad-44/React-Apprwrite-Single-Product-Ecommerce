@@ -14,7 +14,7 @@ const Navbar = () => {
     setIssNavOpen(!isNavOpen);
   };
   return (
-    <nav className="w-full border-b ">
+    <nav className="w-full border-b;">
       <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-4 text-black">
         {/* Logo */}
         <h2 className="w-full text-3xl font-bold text-accent">{logoText}</h2>
@@ -49,8 +49,8 @@ const Navbar = () => {
         <div
           className={
             isNavOpen
-              ? "fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-accent ease-in-out duration-500"
-              : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%]"
+              ? "fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-accent ease-in-out duration-500 z-50"
+              : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%] z-50"
           }
         >
           {/* Mobile Logo */}
