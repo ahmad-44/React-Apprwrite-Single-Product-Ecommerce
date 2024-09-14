@@ -12,6 +12,9 @@ export default {
         blue: "#2980b9",
         blueLight: "#3498db",
       },
+      boxShadow: {
+        dark: "0 4px 14px rgba(7, 7, 7, 0.2)", // Darker shadow
+      },
     },
   },
   plugins: [],

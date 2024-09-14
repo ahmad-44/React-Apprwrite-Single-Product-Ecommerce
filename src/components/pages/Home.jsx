@@ -1,11 +1,10 @@
-import ProductDetails from "../HomeComponents/ProductDetails";
-import Topbar from "../Topbar";
+import Section_ProductDetails from "../HomeComps/HeroSection/Section_ProductDetails";
 
 function Home() {
   return (
-    <>
-      <ProductDetails />
-    </>
+    <div className="max-w-[1240px] m-auto px-5">
+      <Section_ProductDetails />
+    </div>
   );
 }
 

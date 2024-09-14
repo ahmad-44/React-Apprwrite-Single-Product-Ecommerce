@@ -1,15 +1,10 @@
-import productImage1 from "../../public/images/product_image_1.webp";
-import productImage2 from "../../public/images/product_image_2.webp";
-import productImage3 from "../../public/images/product_image_3.webp";
-import productImage4 from "../../public/images/product_image_4.webp";
-import productImage5 from "../../public/images/product_image_5.webp";
-import productImage6 from "../../public/images/product_image_6.webp";
 //************************** Topbar **************************
 export const topbarText = "Free Shipping";
 
 //************************** Navbar **************************
 
-export const logoText = "Baffa";
+export const logoText = "Airmoto";
+export const brandName = "Airmoto";
 export const navItems = [
   {
     label: "Home",
@@ -30,12 +25,34 @@ export const navItems = [
 ];
 
 //************************** ProductDetails **************************
-// Images
-export const productImages = {
-  productImage1,
-  productImage2,
-  productImage3,
-  productImage4,
-  productImage5,
-  productImage6,
+//******************************* Carousel **************************
+
+//******************************* Purchase **************************
+export const numberOfBuyers = "20,0000";
+export const productTitle = "Product Title is This";
+export const subHeading =
+  "Inflate Anything In Minutes with The Push of a Button";
+export const saleTime = "24 Hours";
+export const shortDescription =
+  "Best-selling cordless portable air pump for every situation. Avoid being stranded and dependence on others in a time of need.";
+export const keyFeatures = [
+  "Quick and Accurate",
+  "Works With Most Inflatables",
+  "Guaranteed To Last And Perform",
+  "All-In-One Solution With 3 Attachments",
+  "Includes LED Light And USB-C Cable",
+  "Auto Shut-Off For Precision Pressure",
+];
+
+//******************************* Buy Card + Guarantee **************************
+
+export const numberOfPeopleWatching = 45;
+export const cartButtonText = "BUY NOW";
+export const wattantyPeriod = "3 Months";
+
+//******************************** Single Review **************************
+export const singleReview = {
+  title: "I was so surprised",
+  author: "Charles Lecrec",
+  desc: "I was initially very skeptical about using a new product like Airmoto with my 2018 Ford Explorer. But after experiencing a flat tire due to a nail, it got me inflated quickly and allowed me to go have the tire repaired. Definitely a two thumbs up from me",
 };

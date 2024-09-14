@@ -1,4 +1,4 @@
-import { productImages } from "../../constants/content";
+import { productImages } from "../../../constants/images";
 
 const { productImage1, productImage2, productImage3 } = productImages;
 function ProducImageCarousel() {
