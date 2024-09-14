@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CheckoutModal from "../../CheckoutModal";
+import OrderForm from "../../OrderForm";
 
+// eslint-disable-next-line react/prop-types
 function AddToCartBtn({ btnText }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,14 +19,10 @@ function AddToCartBtn({ btnText }) {
       </button>
 
       <CheckoutModal isOpen={isModalOpen} onClose={toggleModal}>
-        <h2 className="text-xl mb-4">Modal Title</h2>
-        <p>This is the content of the modal.</p>
-        <button
-          className="mt-4 bg-green-500 text-white py-2 px-4 rounded"
-          onClick={toggleModal}
-        >
-          Close
-        </button>
+        <h2 className="text-xl mb-4 font-bold">
+          Enter your details to place order
+        </h2>
+        <OrderForm onClose={toggleModal} />
       </CheckoutModal>
     </div>
   );

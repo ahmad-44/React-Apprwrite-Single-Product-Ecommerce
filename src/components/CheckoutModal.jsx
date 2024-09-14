@@ -15,12 +15,12 @@ const CheckoutModal = ({ isOpen, onClose, children }) => {
         onClick={onClose}
       ></div>
       <div
-        className={`bg-white rounded-lg shadow-lg p-6 relative z-10 transform transition-transform duration-300 ${
+        className={`bg-white w-[90%] md:w-[50%] lg:w-[40%] rounded-lg shadow-lg px-6 py-8 relative z-10 transform transition-transform duration-300 ${
           isOpen ? "scale-100" : "scale-95"
         }`}
       >
         <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          className="absolute top-2 text-2xl  right-2 text-red-500 hover:text-red-700"
           onClick={onClose}
         >
           &times; {/* Cross icon */}

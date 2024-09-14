@@ -46,6 +46,7 @@ export const keyFeatures = [
 
 //******************************* Buy Card + Guarantee **************************
 
+export const productPrice = 7000;
 export const numberOfPeopleWatching = 45;
 export const cartButtonText = "BUY NOW";
 export const wattantyPeriod = "3 Months";

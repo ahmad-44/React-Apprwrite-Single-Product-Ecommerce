@@ -9,4 +9,14 @@
   .secondTitle {
     @apply text-2xl font-bold;
   }
+  .orderTextInput {
+    @apply outline-none border border-slate-400 px-4 py-2 mb-1 mt-1 rounded-md focus:bg-slate-100 w-full;
+  }
+
+  .formError {
+    @apply text-red-500;
+  }
+  .orderFormLabel {
+    @apply mt-4 block;
+  }
 }
