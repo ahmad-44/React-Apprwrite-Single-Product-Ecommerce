@@ -14,9 +14,9 @@ function Sidebar() {
     // Sidebar Container
 
     <div
-      className={`flex flex-col h-screen justify-between bg-slate-800 ${
+      className={`flex flex-col  h-screen justify-between bg-slate-800 ${
         sidebarOpen ? "w-[255px]" : "w-[70px]"
-      }  float-left mr-6 transition-all duration-700`}
+      }  ftransition-all duration-700`}
     >
       {/* toggle and links */}
       <div>

@@ -63,7 +63,32 @@ export class Service {
       console.log("Appwrite serive :: createOrder :: error", error);
     }
   }
+  async getOrders() {
+    try {
+      return await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId
+      );
+    } catch (error) {
+      console.log("Appwrite serive :: getOrder :: error", error);
+      return false;
+    }
+  }
 
+  async deleteOrder(id) {
+    try {
+      console.log(id);
+      await this.databases.deleteDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        id
+      );
+      return true;
+    } catch (error) {
+      console.log("Appwrite serive :: deleteOrder :: error", error);
+      return false;
+    }
+  }
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
@@ -79,33 +104,6 @@ export class Service {
       );
     } catch (error) {
       console.log("Appwrite serive :: updatePost :: error", error);
-    }
-  }
-
-  async deletePost(slug) {
-    try {
-      await this.databases.deleteDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
-        slug
-      );
-      return true;
-    } catch (error) {
-      console.log("Appwrite serive :: deletePost :: error", error);
-      return false;
-    }
-  }
-
-  async getPost(slug) {
-    try {
-      return await this.databases.getDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
-        slug
-      );
-    } catch (error) {
-      console.log("Appwrite serive :: getPost :: error", error);
-      return false;
     }
   }
 

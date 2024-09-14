@@ -16,8 +16,10 @@ export default function ProtectedLayout() {
 
   return (
     <>
-      {isLoggedIn && <Sidebar />}
-      <Outlet />
+      <div className="flex">
+        {isLoggedIn && <Sidebar />}
+        <Outlet />
+      </div>
     </>
   );
 }

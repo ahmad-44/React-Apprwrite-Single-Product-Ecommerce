@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import authService from "../../appwrite/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleUserStatus } from "../../userState/userSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,7 @@ function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen w-full">
       {!isLoggedIn && (
         <form onSubmit={loginHandler} className=" flex flex-col gap-4 mb-40">
           <label htmlFor="email" className="font-medium">
