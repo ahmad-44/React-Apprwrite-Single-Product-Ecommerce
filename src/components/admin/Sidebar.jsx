@@ -14,7 +14,7 @@ function Sidebar() {
     // Sidebar Container
 
     <div
-      className={`flex flex-col  h-screen justify-between bg-slate-800 ${
+      className={`flex flex-col sticky h-screen justify-between bg-slate-800  top-0 left-0 ${
         sidebarOpen ? "w-[255px]" : "w-[70px]"
       }  ftransition-all duration-700`}
     >

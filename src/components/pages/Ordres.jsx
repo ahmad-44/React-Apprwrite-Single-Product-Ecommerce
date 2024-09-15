@@ -1,81 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { MdDelete } from "react-icons/md";
 import { GrEdit } from "react-icons/gr";
 import service from "../../appwrite/config";
-
-// const dummyData = [
-//   {
-//     id: 1,
-//     name: "John Doe",
-//     phone: "123-456-7890",
-//     address: "123 Main St",
-//     city: "New York",
-//     status: "Processing",
-//     email: "john@example.com",
-//   },
-//   {
-//     id: 2,
-//     name: "Jane Smith",
-//     phone: "987-654-3210",
-//     address: "456 Elm St",
-//     city: "Los Angeles",
-//     status: "Shipped",
-//     email: "jane@example.com",
-//   },
-//   {
-//     id: 3,
-//     name: "Alice Johnson",
-//     phone: "555-555-5555",
-//     address: "789 Maple Ave",
-//     city: "Chicago",
-//     status: "Cancelled",
-//     email: "alice@example.com",
-//   },
-// ];
-
-const statuses = [
-  "Processing",
-  "Confirmed",
-  "Cancelled",
-  "Hold",
-  "Shipped",
-  "Packed",
-  "Returned",
-  "Refunded",
-];
 
 const Orders = () => {
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleStatusChange = (id, newStatus) => {
-    const updatedData = data.map((item) =>
-      item.id === id ? { ...item, status: newStatus } : item
-    );
-    setData(updatedData);
-  };
-
-  const handleCheckboxChange = (id) => {
-    setSelectedIds((prevSelected) =>
-      prevSelected.includes(id)
-        ? prevSelected.filter((selectedId) => selectedId !== id)
-        : [...prevSelected, id]
-    );
-  };
-
-  const handleDelete = async (id) => {
-    await service.deleteOrder(id);
-  };
+  const handleDelete = useCallback(async (id) => {
+    const deleted = await service.deleteOrder(id);
+    // Optionally update the data state after deletion
+    if (deleted) {
+      setData((prevData) => prevData.filter((item) => item.$id !== id));
+    }
+  }, []);
   useEffect(() => {
-    console.log(data);
-
-    (async function () {
-      const data = await service.getOrders();
-      setData(Array(data.documents)[0]);
+    const fetchData = async () => {
+      const response = await service.getOrders();
+      setData(Array(response.documents)[0]);
       setIsLoading(false);
-    })();
-  }, [handleDelete]);
+    };
+
+    fetchData();
+  }, []);
   return (
     // <>test</>
     <div className="container mx-auto p-4 overflow-scroll">
