@@ -8,7 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   // inititate the state of login from Redux store. And redux store starts by finding login value from DB
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   // Set dispatcher for toggling login status
   const dispatch = useDispatch();

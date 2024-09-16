@@ -3,7 +3,7 @@ import authService from "../../appwrite/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleUserStatus } from "../../reduxStore/userSlice";
 function Logout() {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   // Set dispatcher for toggling login status
   const dispatch = useDispatch();
