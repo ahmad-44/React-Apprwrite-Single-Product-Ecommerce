@@ -12,7 +12,7 @@ function AddToCartBtn({ btnText }) {
   return (
     <div className="mt-1">
       <button
-        className="py-5 md:py-6 px-10 w-full text-2xl bg-purple text-cloud rounded-full font-bold mt-2 hover:bg-opacity-90 transition duration-300"
+        className="py-4 md:py-5 lg:py-6  px-10 w-full text-2xl bg-purple text-cloud rounded-full font-bold mt-2 hover:bg-opacity-90 transition duration-300"
         onClick={toggleModal}
       >
         {btnText}

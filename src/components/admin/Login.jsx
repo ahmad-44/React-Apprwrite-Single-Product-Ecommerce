@@ -1,13 +1,13 @@
 import { useState } from "react";
 import authService from "../../appwrite/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleUserStatus } from "../../userState/userSlice";
+import { toggleUserStatus } from "../../reduxStore/userSlice";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // inititate the state of login from Redict store. And redux store starts by finding login value from DB
+  // inititate the state of login from Redux store. And redux store starts by finding login value from DB
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   // Set dispatcher for toggling login status

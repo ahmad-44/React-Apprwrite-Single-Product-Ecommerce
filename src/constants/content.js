@@ -46,10 +46,14 @@ export const keyFeatures = [
 
 //******************************* Buy Card + Guarantee **************************
 
-export const productPrice = 7000;
 export const numberOfPeopleWatching = 45;
+export const currencySymbol = "Rs";
+export const delPrice = 6000;
+export const sellingPrice = 5000;
+
 export const cartButtonText = "BUY NOW";
 export const wattantyPeriod = "3 Months";
+export const deliveryDays = "3 - 7";
 
 //******************************** Single Review **************************
 export const singleReview = {

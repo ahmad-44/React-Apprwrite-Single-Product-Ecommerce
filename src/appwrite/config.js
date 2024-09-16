@@ -1,7 +1,7 @@
 //Creation of orders will go here
 import conf from "../conf/conf.js";
 import { Client, ID, Databases, Query } from "appwrite";
-import { productPrice } from "../constants/content.js";
+import { sellingPrice } from "../constants/content.js";
 export class Service {
   client = new Client();
   databases;
@@ -19,6 +19,7 @@ export class Service {
     address,
     city,
     email = "noemail@noemail.com",
+    quantity,
   }) {
     try {
       // step 1,2,3 are for reading and updating the counter which is a separate collection, step 4 is used to create the order
@@ -53,8 +54,8 @@ export class Service {
           address,
           city,
           email,
-          quantity: 1,
-          price: productPrice,
+          quantity,
+          price: sellingPrice * quantity,
           order_id: newOrderId,
           status: "Processing",
         }

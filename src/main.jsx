@@ -10,7 +10,7 @@ import Layout from "./Layout.jsx";
 import ProtectedLayout from "./components/admin/ProtectedLayout.jsx";
 import Login from "./components/admin/Login.jsx";
 import { Provider } from "react-redux";
-import store from "./userState/store.js";
+import store from "./reduxStore/store.js";
 
 import {
   About,

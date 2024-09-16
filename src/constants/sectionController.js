@@ -13,6 +13,8 @@ const _keyFeatures = true;
 
 const _buyCard = true;
 const _highDemand = true;
+const _selling_price = true;
+const _del_price = true;
 const _warranty = true;
 const _freeShipping = true;
 const _inStock = true;
@@ -37,4 +39,6 @@ export {
   _inStock,
   _guaranteeCard,
   _singleReview,
+  _selling_price,
+  _del_price,
 };
