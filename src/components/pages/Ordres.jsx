@@ -58,6 +58,15 @@ const Orders = () => {
     }
   };
 
+  const updateOrders = (updatedOrder) => {
+    for (let i = 0; i < data.length; i++) {
+      if (updatedOrder.order_id === data[i].order_id) {
+        data[i] = updatedOrder;
+        break;
+      }
+    }
+  };
+
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -164,6 +173,7 @@ const Orders = () => {
             onClose={toggleModal}
             order={selectedOrder}
             fetchOrders={fetchOrders}
+            updateOrders={updateOrders}
           />
         </CheckoutModal>
       )}

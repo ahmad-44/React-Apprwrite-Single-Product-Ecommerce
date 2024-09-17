@@ -4,7 +4,7 @@ import service from "../appwrite/config";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { LoaderIcon } from "react-hot-toast";
-export default function OrderForm({ onClose, order, fetchOrders }) {
+export default function OrderForm({ onClose, order, updateOrders }) {
   const {
     register,
     handleSubmit,
@@ -53,7 +53,7 @@ export default function OrderForm({ onClose, order, fetchOrders }) {
     toggleOrderLoading();
     if (order) {
       await service.updateOrder(order.$id, { ...data });
-      fetchOrders();
+      updateOrders(data);
       toggleOrderLoading();
     } else {
       await service.createOrder({ ...data, quantity });

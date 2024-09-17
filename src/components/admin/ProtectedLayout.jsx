@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "./Sidebar";
+import { LoaderIcon } from "react-hot-toast";
 
 export default function ProtectedLayout() {
   const navigate = useNavigate();
@@ -25,7 +26,11 @@ export default function ProtectedLayout() {
     }
   }, [isLoggedIn, navigate, loading]);
   if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while checking
+    return (
+      <div className="flex items-center justify-center">
+        <LoaderIcon />
+      </div>
+    ); // Show a loading indicator while checking
   } else {
     return (
       <>
