@@ -14,7 +14,7 @@ export default function OrderForm({ onClose, order, fetchOrders }) {
   const [orderLoading, setOrderLoading] = useState(false);
 
   const toggleOrderLoading = () => {
-    (prev) => setOrderLoading(!prev);
+    setOrderLoading((prev) => !prev);
   };
   const OrderStatusEnum = [
     "Processing",
