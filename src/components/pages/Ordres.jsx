@@ -71,12 +71,12 @@ const Orders = () => {
           <div className="w-full flex gap-2">
             <ExportCSV
               courier={"leopards"}
-              data={data.filter((item) => selectedIds.includes(item.order_id))}
+              data={data?.filter((item) => selectedIds.includes(item.order_id))}
               name={"Leopards"}
             />
             <ExportCSV
               courier={"mnp"}
-              data={data.filter((item) => selectedIds.includes(item.order_id))}
+              data={data?.filter((item) => selectedIds.includes(item.order_id))}
               name={"M&P"}
             />
           </div>

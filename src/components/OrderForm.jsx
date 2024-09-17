@@ -51,11 +51,12 @@ export default function OrderForm({ onClose, order, fetchOrders }) {
       await service.updateOrder(order.$id, { ...data });
       toast.success("Order Updated Successfully");
       console.log("Order Updated Successfully", order.order_id);
+      fetchOrders();
     } else {
       await service.createOrder({ ...data, quantity });
       toast.success("Order Placed Successfully");
     }
-    fetchOrders();
+
     onClose();
   };
 
