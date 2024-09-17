@@ -97,16 +97,7 @@ export class Service {
   }
   async updateOrder(
     id,
-    {
-      name,
-      phone,
-      address,
-      city,
-      email = "noemail@noemail.com",
-      quantity,
-      price,
-      status,
-    }
+    { name, phone, address, city, email, quantity, price, status }
   ) {
     quantity = Number(quantity);
     price = Number(price);

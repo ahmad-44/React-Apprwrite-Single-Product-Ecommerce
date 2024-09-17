@@ -54,10 +54,12 @@ export default function OrderForm({ onClose, order, fetchOrders }) {
     if (order) {
       await service.updateOrder(order.$id, { ...data });
       fetchOrders();
+      toggleOrderLoading();
     } else {
       await service.createOrder({ ...data, quantity });
+      toggleOrderLoading();
     }
-    toggleOrderLoading();
+
     onClose();
   };
 
