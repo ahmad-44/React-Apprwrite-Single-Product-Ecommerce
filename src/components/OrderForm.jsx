@@ -1,23 +1,50 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import service from "../appwrite/config";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-// eslint-disable-next-line react/prop-types
-export default function OrderForm({ onClose }) {
+import { useEffect } from "react";
+import Price from "./HomeComps/HeroSection/Price";
+import QuantityCounter from "./HomeComps/HeroSection/QuantityCounter";
+export default function OrderForm({ onClose, order }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
+  // Effect to reset form values whenever the order prop changes
+  useEffect(() => {
+    if (order) {
+      reset({
+        order_id: order.order_id || "",
+        name: order.name || "",
+        phone: order.phone || "",
+        address: order.address || "",
+        city: order.city || "",
+        email: order.email || "",
+        quantity: order.quantity || 1,
+        price: order.price || 1,
+      });
+    }
+  }, []);
+  // console.log("ORDER FORM OPENED", order);
   let quantity = useSelector((state) => state.quantity.quantity);
   if (quantity === "") {
     quantity = 1;
   }
 
   const onSubmit = async (data) => {
-    await service.createOrder({ ...data, quantity });
+    if (order) {
+      await service.updateOrder(order.$id, { ...data });
+      toast.success("Order Updated Successfully");
+      console.log("Order Updated Successfully", order.order_id);
+    } else {
+      await service.createOrder({ ...data, quantity });
+      toast.success("Order Placed Successfully");
+    }
+
     onClose();
-    toast.success("Successfully toasted!");
   };
 
   return (
@@ -114,11 +141,56 @@ export default function OrderForm({ onClose }) {
           <span className="formError">{errors.email.message}</span>
         )}
         {/* EMAIL_CLOSES */}
+
+        {order && (
+          <div>
+            {/* PRICE */}
+            <label htmlFor="price" className="orderFormLabel">
+              Price<span className="text-red-500">*</span>
+            </label>
+            <input
+              className="orderTextInput"
+              id="price"
+              {...register("price", {
+                required: "Price is Required",
+                validate: {
+                  isInteger: (value) =>
+                    Number.isInteger(Number(value)) ||
+                    "Input must be an integer",
+                },
+              })}
+            />
+            {errors.price && (
+              <span className="formError">{errors.price.message}</span>
+            )}
+            {/* PRICE_ClOSES */}
+
+            {/* QUANTITY */}
+            <label htmlFor="quantity" className="orderFormLabel">
+              Quantity <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="number"
+              className="orderTextInput"
+              id="quantity"
+              {...register("quantity", {
+                required: {
+                  message: "Quantity is Required",
+                },
+              })}
+            />
+            {quantity.price && (
+              <span className="formError">{errors.quantity.message}</span>
+            )}
+            {/* QUANTITY_ClOSES */}
+          </div>
+        )}
+
         <br />
         <input
           type="submit"
           className="mt-4 cursor-pointer font-bold text-lg bg-purple rounded-md p-4 text-cloud w-full hover:bg-opacity-90"
-          value="Place Order"
+          value={order ? "Update Order" : "Place Order"}
         />
       </form>
     </>

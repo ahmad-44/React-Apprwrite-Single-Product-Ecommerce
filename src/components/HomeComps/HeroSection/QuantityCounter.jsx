@@ -9,7 +9,7 @@ import {
 const QuantityCounter = () => {
   const dispatch = useDispatch();
   const quantity = useSelector((state) => state.quantity.quantity);
-  console.log(useSelector((state) => state.quantity));
+  // console.log(useSelector((state) => state.quantity));
   const handleManualInputs = (e) => {
     const input = Number(e.target.value);
     if (input < 1) {

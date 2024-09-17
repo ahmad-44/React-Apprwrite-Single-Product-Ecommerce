@@ -90,21 +90,37 @@ export class Service {
       return false;
     }
   }
-  async updatePost(slug, { title, content, featuredImage, status }) {
+  async updateOrder(
+    id,
+    {
+      name,
+      phone,
+      address,
+      city,
+      email = "noemail@noemail.com",
+      quantity,
+      price,
+    }
+  ) {
+    quantity = Number(quantity);
+    price = Number(price);
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        slug,
+        id,
         {
-          title,
-          content,
-          featuredImage,
-          status,
+          name,
+          phone,
+          address,
+          city,
+          email,
+          quantity,
+          price,
         }
       );
     } catch (error) {
-      console.log("Appwrite serive :: updatePost :: error", error);
+      console.log("Appwrite serive :: Update Order :: error", error);
     }
   }
 

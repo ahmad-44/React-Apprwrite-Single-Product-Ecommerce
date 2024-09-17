@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 export default function ProtectedLayout() {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   useEffect(() => {
     if (isLoggedIn === false) {
       navigate("/login");

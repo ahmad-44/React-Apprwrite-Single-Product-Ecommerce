@@ -1,9 +1,9 @@
 import { useState } from "react";
 import CheckoutModal from "../../CheckoutModal";
 import OrderForm from "../../OrderForm";
+import { cartButtonText } from "../../../constants/content";
 
-// eslint-disable-next-line react/prop-types
-function AddToCartBtn({ btnText }) {
+function AddToCartBtn() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -15,7 +15,7 @@ function AddToCartBtn({ btnText }) {
         className="py-4 md:py-5 lg:py-6  px-10 w-full text-2xl bg-purple text-cloud rounded-full font-bold mt-2 hover:bg-opacity-90 transition duration-300"
         onClick={toggleModal}
       >
-        {btnText}
+        {cartButtonText}
       </button>
 
       <CheckoutModal isOpen={isModalOpen} onClose={toggleModal}>

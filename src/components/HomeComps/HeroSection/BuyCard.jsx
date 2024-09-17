@@ -7,7 +7,6 @@ import {
   _selling_price,
 } from "../../../constants/sectionController";
 import AddToCartBtn from "./AddToCartBtn";
-import { cartButtonText } from "../../../constants/content";
 import { wattantyPeriod } from "../../../constants/content";
 import { deliveryDays } from "../../../constants/content";
 
@@ -16,7 +15,7 @@ import QuantityCounter from "./QuantityCounter";
 
 function BuyCard() {
   return (
-    <div className="mt-5 bg-white rounded-lg p-6 shadow-dark hover:shadow-lg transition-shadow duration-300">
+    <div className="mt-5 overflow-x-visible bg-white rounded-lg p-6 shadow-dark hover:shadow-lg transition-shadow duration-300">
       {/* PRICES */}
       {_selling_price && (
         <Price
@@ -41,7 +40,7 @@ function BuyCard() {
         {_freeShipping && " | Free Shipping"}
       </p>
       {/* ADD TO CART BUTTON */}
-      <AddToCartBtn btnText={cartButtonText} />
+      <AddToCartBtn />
       {_inStock && (
         <p className="text-center mt-2 text-sm">
           <span className="text-green-600 font-bold ">In Stock:</span> Delivers

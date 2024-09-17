@@ -2,11 +2,20 @@ import { useEffect, useState, useCallback } from "react";
 import { MdDelete } from "react-icons/md";
 import { GrEdit } from "react-icons/gr";
 import service from "../../appwrite/config";
+import CheckoutModal from "../CheckoutModal";
+import OrderForm from "../OrderForm";
 
 const Orders = () => {
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+  const toggleModal = (order = null) => {
+    setSelectedOrder(order);
+    setIsModalOpen(!isModalOpen);
+  };
 
   const handleDelete = useCallback(async (id) => {
     const deleted = await service.deleteOrder(id);
@@ -25,7 +34,6 @@ const Orders = () => {
     fetchData();
   }, []);
   return (
-    // <>test</>
     <div className="container mx-auto p-4 overflow-scroll">
       {isLoading ? (
         "Loading "
@@ -48,7 +56,8 @@ const Orders = () => {
               <th className="py-3 px-6 text-left">Name</th>
               <th className="py-3 px-6 text-left">Phone</th>
               <th className="py-3 px-6 text-left">Address</th>
-              <th className="py-3 px-6 text-left">City</th>
+              <th className="py-3 px-6 text-left">Quantity</th>
+              <th className="py-3 px-6 text-left">Total</th>
               <th className="py-3 px-6 text-left">Status</th>
               <th className="py-3 px-6 text-left">Email</th>
               <th className="py-3 px-6 text-left">Actions</th>
@@ -70,12 +79,18 @@ const Orders = () => {
                 <td className="py-3 px-6">{item.order_id}</td>
                 <td className="py-3 px-6">{item.name}</td>
                 <td className="py-3 px-6">{item.phone}</td>
-                <td className="py-3 px-6">{item.address}</td>
-                <td className="py-3 px-6">{item.city}</td>
+                <td className="py-3 px-6">
+                  {item.address}. {item.city}
+                </td>
+                <td className="py-3 px-6">{item.quantity}</td>
+                <td className="py-3 px-6">{item.price}</td>
                 <td className="py-3 px-6">{item.status}</td>
                 <td className="py-3 px-6">{item.email}</td>
                 <td className="py-3 px-6 space-x-2">
-                  <button className="text-blue-500 hover:text-blue-700 text-md">
+                  <button
+                    onClick={() => toggleModal(item)}
+                    className="text-blue-500 hover:text-blue-700 text-md"
+                  >
                     {/* Edit Icon */}
                     <GrEdit />
                   </button>
@@ -93,6 +108,12 @@ const Orders = () => {
             ))}
           </tbody>
         </table>
+      )}
+      {isModalOpen && (
+        <CheckoutModal isOpen={isModalOpen} onClose={toggleModal}>
+          <h2 className="text-xl mb-4 font-bold">Edit Order Details</h2>
+          <OrderForm onClose={toggleModal} order={selectedOrder} />
+        </CheckoutModal>
       )}
     </div>
   );
