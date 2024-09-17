@@ -4,7 +4,12 @@ import service from "../appwrite/config";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-export default function OrderForm({ onClose, order, fetchOrders }) {
+export default function OrderForm({
+  onClose,
+  order,
+  fetchOrders,
+  toggleOrderLoading,
+}) {
   const {
     register,
     handleSubmit,
@@ -46,13 +51,14 @@ export default function OrderForm({ onClose, order, fetchOrders }) {
   }
 
   const onSubmit = async (data) => {
+    toggleOrderLoading();
     if (order) {
       await service.updateOrder(order.$id, { ...data });
       fetchOrders();
     } else {
       await service.createOrder({ ...data, quantity });
     }
-
+    toggleOrderLoading();
     onClose();
   };
 
