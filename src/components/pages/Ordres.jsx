@@ -4,7 +4,7 @@ import { GrEdit } from "react-icons/gr";
 import service from "../../appwrite/config";
 import CheckoutModal from "../CheckoutModal";
 import OrderForm from "../OrderForm";
-import ExportCSV from "../../utils/exportCSV";
+import ExportCSV from "../../utils/exportCSV.jsx";
 
 const Orders = () => {
   const [data, setData] = useState([]);
