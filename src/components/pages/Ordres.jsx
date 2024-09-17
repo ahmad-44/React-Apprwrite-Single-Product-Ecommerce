@@ -24,15 +24,37 @@ const Orders = () => {
       setData((prevData) => prevData.filter((item) => item.$id !== id));
     }
   }, []);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await service.getOrders();
-      setData(Array(response.documents)[0]);
-      setIsLoading(false);
-    };
 
-    fetchData();
+  const handleCheckboxChange = (orderId) => {
+    setSelectedIds((prevSelectedIds) => {
+      if (prevSelectedIds.includes(orderId)) {
+        return prevSelectedIds.filter((id) => id !== orderId); // Uncheck
+      } else {
+        return [...prevSelectedIds, orderId]; // Check
+      }
+    });
+  };
+  const handleSelectAllChange = (e) => {
+    const isChecked = e.target.checked;
+    setSelectedIds(isChecked ? data.map((item) => item.order_id) : []);
+  };
+
+  const fetchOrders = async () => {
+    setIsLoading(true);
+    try {
+      const response = await service.getOrders();
+      setData(Array(response.documents)[0]); // Ensure correct data structure
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchOrders();
   }, []);
+
   return (
     <div className="container mx-auto p-4 overflow-scroll">
       {isLoading ? (
@@ -42,15 +64,7 @@ const Orders = () => {
           <thead>
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
               <th className="py-3 px-6 text-left">
-                <input
-                  type="checkbox"
-                  onChange={(e) => {
-                    const isChecked = e.target.checked;
-                    setSelectedIds(
-                      isChecked ? data.map((item) => item.id) : []
-                    );
-                  }}
-                />
+                <input type="checkbox" onChange={handleSelectAllChange} />
               </th>
               <th className="py-3 px-6 text-left">ID</th>
               <th className="py-3 px-6 text-left">Name</th>
@@ -60,6 +74,7 @@ const Orders = () => {
               <th className="py-3 px-6 text-left">Total</th>
               <th className="py-3 px-6 text-left">Status</th>
               <th className="py-3 px-6 text-left">Email</th>
+              <th className="py-3 px-6 text-left">Date</th>
               <th className="py-3 px-6 text-left">Actions</th>
             </tr>
           </thead>
@@ -79,13 +94,25 @@ const Orders = () => {
                 <td className="py-3 px-6">{item.order_id}</td>
                 <td className="py-3 px-6">{item.name}</td>
                 <td className="py-3 px-6">{item.phone}</td>
-                <td className="py-3 px-6">
-                  {item.address}. {item.city}
+                {/* ADDRESS */}
+                <td className="py-3 px-6 relative group">
+                  <span
+                    className="block overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
+                    title={item.address}
+                  >
+                    {item.address}, {item.city}
+                  </span>
+                  <span className="absolute left-0 z-10 w-48 p-2 text-sm text-white bg-black rounded-lg opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    {item.address},{item.city}
+                  </span>
                 </td>
                 <td className="py-3 px-6">{item.quantity}</td>
                 <td className="py-3 px-6">{item.price}</td>
                 <td className="py-3 px-6">{item.status}</td>
                 <td className="py-3 px-6">{item.email}</td>
+                <td className="py-3 px-6">
+                  {new Date(item.$createdAt).toLocaleDateString("en-PK")}
+                </td>
                 <td className="py-3 px-6 space-x-2">
                   <button
                     onClick={() => toggleModal(item)}
@@ -112,7 +139,11 @@ const Orders = () => {
       {isModalOpen && (
         <CheckoutModal isOpen={isModalOpen} onClose={toggleModal}>
           <h2 className="text-xl mb-4 font-bold">Edit Order Details</h2>
-          <OrderForm onClose={toggleModal} order={selectedOrder} />
+          <OrderForm
+            onClose={toggleModal}
+            order={selectedOrder}
+            fetchOrders={fetchOrders}
+          />
         </CheckoutModal>
       )}
     </div>

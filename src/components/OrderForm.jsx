@@ -4,15 +4,26 @@ import service from "../appwrite/config";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import Price from "./HomeComps/HeroSection/Price";
-import QuantityCounter from "./HomeComps/HeroSection/QuantityCounter";
-export default function OrderForm({ onClose, order }) {
+
+export default function OrderForm({ onClose, order, fetchOrders }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+
+  const OrderStatusEnum = [
+    "Processing",
+    "Confirmed",
+    "Cancelled",
+    "Shipped",
+    "Packed",
+    "Hold",
+    "Returned",
+    "Refunded",
+  ];
+
   // Effect to reset form values whenever the order prop changes
   useEffect(() => {
     if (order) {
@@ -23,12 +34,13 @@ export default function OrderForm({ onClose, order }) {
         address: order.address || "",
         city: order.city || "",
         email: order.email || "",
+        status: order.status || "Processing",
         quantity: order.quantity || 1,
         price: order.price || 1,
       });
     }
   }, []);
-  // console.log("ORDER FORM OPENED", order);
+  // console.log("ORDER FORM OPENED", order.status);
   let quantity = useSelector((state) => state.quantity.quantity);
   if (quantity === "") {
     quantity = 1;
@@ -43,7 +55,7 @@ export default function OrderForm({ onClose, order }) {
       await service.createOrder({ ...data, quantity });
       toast.success("Order Placed Successfully");
     }
-
+    fetchOrders();
     onClose();
   };
 
@@ -183,6 +195,29 @@ export default function OrderForm({ onClose, order }) {
               <span className="formError">{errors.quantity.message}</span>
             )}
             {/* QUANTITY_ClOSES */}
+
+            {/* STATUS */}
+            <label htmlFor="status" className="orderFormLabel">
+              Order Status:
+            </label>
+            <select
+              id="status"
+              className="orderTextInput"
+              {...register("status", {
+                required: "Please select an order status",
+              })}
+            >
+              <option value="">Select status</option>
+              {OrderStatusEnum.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+            {errors.status && (
+              <span className="formError">{errors.status.message}</span>
+            )}
+            {/* STATUS_ClOSES */}
           </div>
         )}
 

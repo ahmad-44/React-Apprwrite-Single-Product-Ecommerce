@@ -68,7 +68,8 @@ export class Service {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
-        conf.appwriteCollectionId
+        conf.appwriteCollectionId,
+        [Query.orderDesc("order_id")]
       );
     } catch (error) {
       console.log("Appwrite serive :: getOrder :: error", error);
@@ -100,6 +101,7 @@ export class Service {
       email = "noemail@noemail.com",
       quantity,
       price,
+      status,
     }
   ) {
     quantity = Number(quantity);
@@ -117,6 +119,7 @@ export class Service {
           email,
           quantity,
           price,
+          status,
         }
       );
     } catch (error) {
