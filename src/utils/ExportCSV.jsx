@@ -26,7 +26,7 @@ function ExportCSV({ courier, data, name }) {
       return_address: "Khwaja Kheli Bala, Baffa",
     };
 
-    let csvData = data.map((item) => {
+    let csvData = data?.map((item) => {
       return [
         cols.shipperName,
         cols.shipperPhone,
@@ -82,7 +82,7 @@ function ExportCSV({ courier, data, name }) {
       Remarks: "Handle With Care",
     };
 
-    let csvData = data.map((item) => {
+    let csvData = data?.map((item) => {
       return [
         item.name,
         item.address,

@@ -99,7 +99,7 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody className="text-gray-600 text-sm font-light">
-              {data.map((item) => (
+              {data?.map((item) => (
                 <tr
                   key={item.order_id}
                   className="border-b border-gray-200 hover:bg-gray-100 h-22"
