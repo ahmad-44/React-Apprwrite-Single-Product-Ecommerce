@@ -9,8 +9,12 @@ function UserStatusChecker() {
 
   useEffect(() => {
     const checkUserStatus = async () => {
-      const user = await authService.getCurrentUser();
-      dispatch(setUserLoggedIn(Boolean(user)));
+      try {
+        const user = await authService.getCurrentUser();
+        dispatch(setUserLoggedIn(Boolean(user)));
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     checkUserStatus();

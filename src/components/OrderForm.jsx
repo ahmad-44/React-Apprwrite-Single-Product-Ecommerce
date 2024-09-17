@@ -2,21 +2,20 @@
 import { useForm } from "react-hook-form";
 import service from "../appwrite/config";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-
-export default function OrderForm({
-  onClose,
-  order,
-  fetchOrders,
-  toggleOrderLoading,
-}) {
+import { useState, useEffect } from "react";
+import { LoaderIcon } from "react-hot-toast";
+export default function OrderForm({ onClose, order, fetchOrders }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const [orderLoading, setOrderLoading] = useState(false);
 
+  const toggleOrderLoading = () => {
+    (prev) => setOrderLoading(!prev);
+  };
   const OrderStatusEnum = [
     "Processing",
     "Confirmed",
@@ -225,11 +224,23 @@ export default function OrderForm({
         )}
 
         <br />
-        <input
+        <button
           type="submit"
-          className="mt-4 cursor-pointer font-bold text-lg bg-purple rounded-md p-4 text-cloud w-full hover:bg-opacity-90"
-          value={order ? "Update Order" : "Place Order"}
-        />
+          className={`mt-4 font-bold text-lg rounded-md text-cloud p-4 w-full hover:bg-opacity-90 bg-purple ${
+            orderLoading ? "cursor-not-allowed" : "cursor-pointer "
+          }`}
+          disabled={orderLoading}
+        >
+          {orderLoading ? (
+            <span className="flex items-center justify-center h-7">
+              <LoaderIcon />
+            </span>
+          ) : order ? (
+            "Update Order"
+          ) : (
+            "Place Order"
+          )}
+        </button>
       </form>
     </>
   );
