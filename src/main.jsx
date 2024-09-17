@@ -12,6 +12,7 @@ import Login from "./components/admin/Login.jsx";
 import { Provider } from "react-redux";
 import store from "./reduxStore/store.js";
 import { Toaster } from "react-hot-toast";
+import UserStatusChecker from "./components/admin/UserStatusChecker.jsx";
 
 import {
   About,
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Toaster />
+    <UserStatusChecker />
     <RouterProvider router={router} />
   </Provider>
 );

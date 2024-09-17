@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import authService from "../appwrite/auth";
+// null means "checking the user's status."
+// true means "user is logged in."
+// false means "user is logged out."
 const initialState = {
-  isLoggedIn: Boolean(await authService.getCurrentUser()),
+  isLoggedIn: null,
 };
 
 export const userSlice = createSlice({
@@ -11,8 +13,12 @@ export const userSlice = createSlice({
     toggleUserStatus: (state) => {
       state.isLoggedIn = !state.isLoggedIn;
     },
+    // when the app starts, it is used. inside UserStatusChecker.jsx
+    setUserLoggedIn: (state, action) => {
+      state.isLoggedIn = action.payload;
+    },
   },
 });
 
-export const { toggleUserStatus } = userSlice.actions;
+export const { toggleUserStatus, setUserLoggedIn } = userSlice.actions;
 export default userSlice.reducer;
