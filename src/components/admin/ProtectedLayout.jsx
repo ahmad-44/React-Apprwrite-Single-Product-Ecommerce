@@ -8,8 +8,8 @@ export default function ProtectedLayout() {
   // console.log(isLoggedIn);
   useEffect(() => {
     if (isLoggedIn === false) {
-      navigate("/login");
-    } else if (isLoggedIn === true && window.location.pathname === "/login") {
+      navigate("/star");
+    } else if (isLoggedIn === true && window.location.pathname === "/star") {
       navigate("/orders");
     }
   }, [isLoggedIn, navigate]);

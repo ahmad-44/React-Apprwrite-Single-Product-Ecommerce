@@ -15,7 +15,7 @@ function Sidebar() {
 
     <div
       className={`flex flex-col sticky h-screen justify-between bg-slate-800  top-0 left-0 ${
-        sidebarOpen ? "w-[255px]" : "w-[70px]"
+        sidebarOpen ? "min-w-[200px]" : "min-w-[70px]"
       }  ftransition-all duration-700`}
     >
       {/* toggle and links */}
@@ -54,11 +54,11 @@ function Sidebar() {
       {/* User Buttons */}
       {sidebarOpen ? (
         <div className="p-4 mb-6 opacity-100 transition-all duration-700">
-          <Logout />
+          <Logout label={"Logout"} />
         </div>
       ) : (
-        <div className="p-4 mb-6 opacity-0 transition-all duration-700">
-          <Logout />
+        <div className=" mb-6 opacity-100 transition-all duration-700">
+          <Logout label={"𝕏"} />
         </div>
       )}
     </div>

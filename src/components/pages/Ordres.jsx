@@ -4,6 +4,7 @@ import { GrEdit } from "react-icons/gr";
 import service from "../../appwrite/config";
 import CheckoutModal from "../CheckoutModal";
 import OrderForm from "../OrderForm";
+import ExportCSV from "../../utils/exportCSV";
 
 const Orders = () => {
   const [data, setData] = useState([]);
@@ -12,11 +13,13 @@ const Orders = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
+  // Control Modal
   const toggleModal = (order = null) => {
     setSelectedOrder(order);
     setIsModalOpen(!isModalOpen);
   };
 
+  // Deleting Orders
   const handleDelete = useCallback(async (id) => {
     const deleted = await service.deleteOrder(id);
     // Optionally update the data state after deletion
@@ -25,6 +28,7 @@ const Orders = () => {
     }
   }, []);
 
+  // single check box on/off handling
   const handleCheckboxChange = (orderId) => {
     setSelectedIds((prevSelectedIds) => {
       if (prevSelectedIds.includes(orderId)) {
@@ -34,11 +38,14 @@ const Orders = () => {
       }
     });
   };
+
+  // all check boxes on/off handling
   const handleSelectAllChange = (e) => {
     const isChecked = e.target.checked;
     setSelectedIds(isChecked ? data.map((item) => item.order_id) : []);
   };
 
+  // fetch all orders from Database
   const fetchOrders = async () => {
     setIsLoading(true);
     try {
@@ -56,7 +63,19 @@ const Orders = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-4 overflow-scroll">
+    <div className="container p-4 ">
+      <div className="w-full flex gap-2">
+        <ExportCSV
+          courier={"leopards"}
+          data={data.filter((item) => selectedIds.includes(item.order_id))}
+          name={"Leopards"}
+        />
+        <ExportCSV
+          courier={"mnp"}
+          data={data.filter((item) => selectedIds.includes(item.order_id))}
+          name={"M&P"}
+        />
+      </div>
       {isLoading ? (
         "Loading "
       ) : (

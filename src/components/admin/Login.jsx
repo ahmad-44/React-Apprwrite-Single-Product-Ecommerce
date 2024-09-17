@@ -37,7 +37,7 @@ function Login() {
     } catch (error) {
       dispatch(toggleUserStatus());
       setError(error.message);
-      navigate("/login");
+      navigate("/star");
     }
   }
 

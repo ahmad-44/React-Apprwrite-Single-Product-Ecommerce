@@ -31,7 +31,7 @@ const router = createBrowserRouter(
       </Route>
       {/* Protexted Routes */}
       <Route element={<ProtectedLayout />}>
-        <Route path="/login" element={<Login />} />
+        <Route path="/star" element={<Login />} />
         <Route path="/account" element={<Account />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/orders" element={<Orders />} />

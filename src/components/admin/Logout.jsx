@@ -1,8 +1,8 @@
-import { useState } from "react";
 import authService from "../../appwrite/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleUserStatus } from "../../reduxStore/userSlice";
-function Logout() {
+// eslint-disable-next-line react/prop-types
+function Logout({ label }) {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   // Set dispatcher for toggling login status
@@ -15,12 +15,12 @@ function Logout() {
   return (
     <>
       {isLoggedIn && (
-        <div className="text-white flex flex-col gap-4">
+        <div className="text-white flex flex-col w-full">
           <button
             onClick={logoutUser}
             className="bg-purple py-3 w-[80%] hover:bg-opacity-80 rounded-lg text-lg m-auto text-white"
           >
-            LogOut
+            {label}
           </button>
         </div>
       )}
