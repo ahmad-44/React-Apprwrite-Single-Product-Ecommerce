@@ -2,6 +2,7 @@
 import conf from "../conf/conf.js";
 import { Client, ID, Databases, Query } from "appwrite";
 import { sellingPrice } from "../constants/content.js";
+import toast from "react-hot-toast";
 export class Service {
   client = new Client();
   databases;
@@ -44,7 +45,7 @@ export class Service {
       );
 
       // Step 4: Create the new order
-      return await this.databases.createDocument(
+      const createdDocument = await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         ID.unique(),
@@ -60,8 +61,11 @@ export class Service {
           status: "Processing",
         }
       );
+      toast.success("Order Created Successfully");
+      return createdDocument;
     } catch (error) {
       console.log("Appwrite serive :: createOrder :: error", error);
+      toast.error("Order Creation Failed");
     }
   }
   async getOrders() {
@@ -107,7 +111,7 @@ export class Service {
     quantity = Number(quantity);
     price = Number(price);
     try {
-      return await this.databases.updateDocument(
+      const updatedDoc = await this.databases.updateDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         id,
@@ -122,8 +126,11 @@ export class Service {
           status,
         }
       );
+      toast.success("Order Updated Successfully");
+      return updatedDoc;
     } catch (error) {
       console.log("Appwrite serive :: Update Order :: error", error);
+      toast.error("Order Updation Failed");
     }
   }
 

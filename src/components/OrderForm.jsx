@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import service from "../appwrite/config";
-import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -49,12 +48,9 @@ export default function OrderForm({ onClose, order, fetchOrders }) {
   const onSubmit = async (data) => {
     if (order) {
       await service.updateOrder(order.$id, { ...data });
-      toast.success("Order Updated Successfully");
-      console.log("Order Updated Successfully", order.order_id);
       fetchOrders();
     } else {
       await service.createOrder({ ...data, quantity });
-      toast.success("Order Placed Successfully");
     }
 
     onClose();
