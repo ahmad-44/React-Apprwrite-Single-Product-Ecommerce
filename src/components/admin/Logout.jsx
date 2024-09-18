@@ -12,6 +12,7 @@ function Logout({ label }) {
   const logoutUser = async () => {
     await authService.logout();
     dispatch(toggleUserStatus());
+    navigate("/star", { replace: true });
   };
   return (
     <>
