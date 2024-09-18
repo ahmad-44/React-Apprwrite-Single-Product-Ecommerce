@@ -1,10 +1,11 @@
 import authService from "../../appwrite/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleUserStatus } from "../../reduxStore/userSlice";
+import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 function Logout({ label }) {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-
+  const navigate = useNavigate();
   // Set dispatcher for toggling login status
   const dispatch = useDispatch();
   // This function is responsible for LOGOUT
