@@ -22,6 +22,10 @@ const _inStock = true;
 const _guaranteeCard = true;
 const _singleReview = true;
 
+//************************** ProductDetails **************************
+const _footer_copyright = true;
+const _footer_whatsapp = true;
+
 export {
   _navbar,
   _footer,
@@ -41,4 +45,6 @@ export {
   _singleReview,
   _selling_price,
   _del_price,
+  _footer_copyright,
+  _footer_whatsapp,
 };

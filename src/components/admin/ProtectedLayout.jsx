@@ -27,7 +27,7 @@ export default function ProtectedLayout() {
   }, [isLoggedIn, navigate, loading]);
   if (loading) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center mt-10 justify-center">
         <LoaderIcon />
       </div>
     ); // Show a loading indicator while checking

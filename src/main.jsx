@@ -16,8 +16,8 @@ import UserStatusChecker from "./components/admin/UserStatusChecker.jsx";
 
 import {
   About,
-  Account,
   Analytics,
+  Account,
   Home,
   Orders,
   PrintSlips,

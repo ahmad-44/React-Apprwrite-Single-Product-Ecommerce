@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { logoText } from "../constants/content";
 import { navItems } from "../constants/content";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
@@ -17,7 +17,9 @@ const Navbar = () => {
     <nav className="w-full border-b;">
       <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-4 text-black">
         {/* Logo */}
-        <h2 className="w-full text-3xl font-bold text-accent">{logoText}</h2>
+        <Link to="/">
+          <h2 className="w-full text-3xl font-bold text-accent">{logoText}</h2>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex">

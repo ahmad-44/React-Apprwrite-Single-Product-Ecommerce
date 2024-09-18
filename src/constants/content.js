@@ -1,3 +1,33 @@
+import HomeImg from "../../public/icons/home.svg";
+import CommunityImg from "../../public/icons/user.svg";
+import CollectionsImg from "../../public/icons/star.svg";
+import AccountImg from "../../public/icons/account.svg";
+
+//************************** Admin SideBar **************************
+
+export const sidebarLinks = [
+  {
+    imgURL: HomeImg,
+    route: "/orders",
+    label: "Orders",
+  },
+  {
+    imgURL: CommunityImg,
+    route: "/analytics",
+    label: "Analytics",
+  },
+  {
+    imgURL: CollectionsImg,
+    route: "/print-slips",
+    label: "Print Slips",
+  },
+  {
+    imgURL: AccountImg,
+    route: "/account",
+    label: "Account",
+  },
+];
+
 //************************** Topbar **************************
 export const topbarText = "Free Shipping";
 
@@ -14,14 +44,6 @@ export const navItems = [
     label: "About",
     route: "/about",
   },
-  {
-    label: "Dummy",
-    route: "/dummy1",
-  },
-  {
-    label: "Dummy",
-    route: "/dummy2",
-  },
 ];
 
 //************************** ProductDetails **************************
@@ -29,7 +51,7 @@ export const navItems = [
 
 //******************************* Purchase **************************
 export const numberOfBuyers = "20,0000";
-export const productTitle = "Product Title is This";
+export const productTitle = "Smart Air Pump";
 export const subHeading =
   "Inflate Anything In Minutes with The Push of a Button";
 export const saleTime = "24 Hours";
@@ -61,3 +83,7 @@ export const singleReview = {
   author: "Charles Lecrec",
   desc: "I was initially very skeptical about using a new product like Airmoto with my 2018 Ford Explorer. But after experiencing a flat tire due to a nail, it got me inflated quickly and allowed me to go have the tire repaired. Definitely a two thumbs up from me",
 };
+
+//******************************** Footer **************************
+export const whatsappNumber = "03331234567";
+export const copyrightText = `All rights reserved by ${brandName}`;

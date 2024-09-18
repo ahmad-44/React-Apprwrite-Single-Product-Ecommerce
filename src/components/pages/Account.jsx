@@ -1,14 +1,5 @@
-import React from "react";
-import Login from "../admin/Login";
-import Logout from "../admin/Logout";
-
 function Account() {
-  return (
-    <div>
-      <Login />
-      <Logout />
-    </div>
-  );
+  return <div>Account</div>;
 }
 
 export default Account;
